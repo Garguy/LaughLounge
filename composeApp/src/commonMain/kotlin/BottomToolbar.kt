@@ -21,7 +21,6 @@ import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -69,8 +68,8 @@ fun GlassmorphicBottomNavigation(hazeState: HazeState) {
                 width = Dp.Hairline,
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color.White.copy(alpha = .8f),
-                        Color.White.copy(alpha = .2f),
+                        Color.Gray.copy(alpha = .8f),
+                        Color.Gray.copy(alpha = .2f),
                     ),
                 ),
                 shape = CircleShape
@@ -162,7 +161,6 @@ fun BottomBarTabs(
             fontSize = 12.sp,
             fontWeight = FontWeight.Medium,
         ),
-        LocalContentColor provides Color.White
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
@@ -204,25 +202,34 @@ fun BottomBarTabs(
 }
 
 sealed class BottomBarTab(val title: String, val icon: ImageVector, val color: Color) {
-    data object Profile : BottomBarTab(
+    data object Search : BottomBarTab(
         title = "Search",
         icon = Icons.Rounded.Search,
-        color = Color(0xFFFFA574)
+        color = Color(0xFF0077B6)
     )
+
     data object Home : BottomBarTab(
         title = "Home",
         icon = Icons.Rounded.Home,
-        color = Color(0xFFFA6FFF)
+        color = Color(0xFF0077B6)
     )
+
+//    data object Profile : BottomBarTab(
+//        title = "Profile",
+//        icon = Icons.Rounded.Person,
+//        color = Color(0xFF0077B6)
+//    )
+
     data object Settings : BottomBarTab(
         title = "Settings",
         icon = Icons.Rounded.Settings,
-        color = Color(0xFFADFF64)
+        color = Color(0xFF0077B6)
     )
 }
 
 val tabs = listOf(
-    BottomBarTab.Profile,
+    BottomBarTab.Search,
     BottomBarTab.Home,
+//    BottomBarTab.Profile,
     BottomBarTab.Settings,
 )
