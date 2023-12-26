@@ -1,4 +1,4 @@
-package dadJokes
+package jokes.dadJokes
 
 import kotlinx.serialization.Serializable
 

@@ -1,4 +1,4 @@
-package dadJokes
+package jokes
 
 import LaughLoungeTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -23,9 +23,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import jokes.dadJokes.DadJokeApiService
+import jokes.randomJokes.RandomJokeApiService
 
 @Composable
-fun JokeScreen(jokeApiService: JokeApiService) {
+fun JokeScreen(dadJokeApiService: DadJokeApiService, randomJokeApiService: RandomJokeApiService) {
     var dadJoke by remember { mutableStateOf("Ready for a laugh? Tap the button!") }
     var isLoading by remember { mutableStateOf(false) }
 
@@ -65,10 +67,10 @@ fun JokeScreen(jokeApiService: JokeApiService) {
     if (isLoading) {
         LaunchedEffect(Unit) {
             dadJoke = try {
-                val response = jokeApiService.getRandomJoke()
+                val response = randomJokeApiService.getRandomJoke()
                 response.joke
             } catch (e: Exception) {
-                "Oops, something went wrong!"
+                "${e.message}"
             }
             isLoading = false
         }

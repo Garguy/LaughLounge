@@ -2,9 +2,10 @@
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import dadJokes.JokeApiService
-import dadJokes.JokeScreen
 import dev.chrisbanes.haze.HazeState
+import jokes.JokeScreen
+import jokes.dadJokes.DadJokeApiService
+import jokes.randomJokes.RandomJokeApiService
 
 @Composable
 fun App() {
@@ -16,8 +17,9 @@ fun App() {
                 GlassmorphicBottomNavigation(hazeState)
             }
         ) {
-            val jokeApiService = JokeApiService()
-            JokeScreen(jokeApiService = jokeApiService)
+            val jokeApiService = DadJokeApiService()
+            val randomJokeApiService = RandomJokeApiService()
+            JokeScreen(dadJokeApiService = jokeApiService, randomJokeApiService = randomJokeApiService)
         }
     }
 }

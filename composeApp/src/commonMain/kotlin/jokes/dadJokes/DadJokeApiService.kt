@@ -1,4 +1,4 @@
-package dadJokes
+package jokes.dadJokes
 
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -12,7 +12,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-class JokeApiService {
+class DadJokeApiService {
 
     private val client = HttpClient {
         install(Logging) {
@@ -32,7 +32,7 @@ class JokeApiService {
         }
     }
 
-    suspend fun getRandomJoke(): DadJoke {
+    suspend fun getDadJoke(): DadJoke {
         return client.get("https://icanhazdadjoke.com/").body()
     }
 }
