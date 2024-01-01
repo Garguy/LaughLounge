@@ -28,17 +28,25 @@ import jokes.dadJokes.DadJokeApiService
 import jokes.devJokes.DevJokeApiService
 import jokes.randomJokes.AppSpotRandomJokeApiService
 import jokes.randomJokes.RandomJokeApiService
+import jokes.randomizedApi.RandomApiResponse
 
 @Composable
 fun JokeScreen(
     dadJokeApiService: DadJokeApiService,
     randomJokeApiService: RandomJokeApiService,
     devJokeApiService: DevJokeApiService,
-    appSpotRandomJoke: AppSpotRandomJokeApiService,
-    chuckNorrisJoke: ChuckNorrisJokeApiService
+    appSpotRandomJokeApiService: AppSpotRandomJokeApiService,
+    chuckNorrisJokeApiService: ChuckNorrisJokeApiService
 ) {
-    var dadJoke by remember { mutableStateOf("Ready for a laugh? Tap the button!") }
+    var joke by remember { mutableStateOf("Ready for a laugh? Tap the button!") }
     var isLoading by remember { mutableStateOf(false) }
+    val apiServices = listOf(
+        dadJokeApiService,
+        randomJokeApiService,
+        devJokeApiService,
+        appSpotRandomJokeApiService,
+        chuckNorrisJokeApiService
+    )
 
     LaughLoungeTheme {
         Surface(color = MaterialTheme.colorScheme.surface) {
@@ -50,7 +58,7 @@ fun JokeScreen(
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = dadJoke,
+                    text = joke,
                     style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onSurface,
                     textAlign = TextAlign.Center,
@@ -74,11 +82,17 @@ fun JokeScreen(
     }
 
     if (isLoading) {
+        val selectedService = apiServices.random()
         LaunchedEffect(Unit) {
-            dadJoke = try {
-                val response = chuckNorrisJoke.getChuckNorrisJoke()
-                response.joke
-//                (response?.firstOrNull()?.question ?: "Error") + " " + (response?.firstOrNull()?.punchline ?: "Something went wrong")
+            joke = try {
+                when (val result = selectedService.fetchRandomApi()) {
+                    is RandomApiResponse.RandomJokeResponse -> result.joke.toString()
+                    is RandomApiResponse.DevJokeResponse -> (result.devJoke.firstOrNull()?.question + " " + result.devJoke.firstOrNull()?.punchline)
+                    is RandomApiResponse.AppSpotRandomJokeResponse -> result.appSpotRandomJoke.setup + " " + result.appSpotRandomJoke.punchline
+                    is RandomApiResponse.DadJokeResponse -> result.dadJoke.joke
+                    is RandomApiResponse.ChuckNorrisResponse -> result.chuckNorrisJoke.joke
+                    is RandomApiResponse.Error -> result.message
+                }
             } catch (e: Exception) {
                 "${e.message}"
             }

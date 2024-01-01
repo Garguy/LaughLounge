@@ -12,24 +12,18 @@ import jokes.randomJokes.RandomJokeApiService
 @Composable
 fun App() {
     val hazeState = remember { HazeState() }
-
     LaughLoungeTheme {
         Scaffold(
             bottomBar = {
                 GlassmorphicBottomNavigation(hazeState)
             }
         ) {
-            val jokeApiService = DadJokeApiService()
-            val randomJokeApiService = RandomJokeApiService()
-            val devJokeApiService = DevJokeApiService()
-            val appSpotRandomJoke = AppSpotRandomJokeApiService()
-            val chuckNorrisJoke = ChuckNorrisJokeApiService()
             JokeScreen(
-                dadJokeApiService = jokeApiService,
-                randomJokeApiService = randomJokeApiService,
-                devJokeApiService = devJokeApiService,
-                appSpotRandomJoke = appSpotRandomJoke,
-                chuckNorrisJoke = chuckNorrisJoke
+                dadJokeApiService = DadJokeApiService(), // Replace with actual instances
+                randomJokeApiService = RandomJokeApiService(),
+                devJokeApiService = DevJokeApiService(),
+                appSpotRandomJokeApiService = AppSpotRandomJokeApiService(),
+                chuckNorrisJokeApiService = ChuckNorrisJokeApiService()
             )
         }
     }

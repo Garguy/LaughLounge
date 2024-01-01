@@ -7,9 +7,11 @@ import io.ktor.client.request.header
 import io.ktor.client.request.headers
 import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
+import jokes.randomizedApi.RandomApiResponse
+import jokes.randomizedApi.RandomApiService
 import utils.HttpClientFactory
 
-class ChuckNorrisJokeApiService {
+class ChuckNorrisJokeApiService: RandomApiService {
     private val defaultJoke = "No joke found"
     private val url = "https://api.api-ninjas.com/v1/chucknorris"
     private val client = HttpClientFactory.client
@@ -30,5 +32,9 @@ class ChuckNorrisJokeApiService {
         } catch (e: Exception) {
             return ChuckNorrisJoke(defaultJoke)
         }
+    }
+
+    override suspend fun fetchRandomApi(): RandomApiResponse {
+        return RandomApiResponse.ChuckNorrisResponse(getChuckNorrisJoke())
     }
 }

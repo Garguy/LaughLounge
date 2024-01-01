@@ -4,10 +4,12 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
 import io.ktor.http.HttpStatusCode
+import jokes.randomizedApi.RandomApiResponse
+import jokes.randomizedApi.RandomApiService
 import kotlinx.serialization.json.Json
 import utils.HttpClientFactory
 
-class DevJokeApiService {
+class DevJokeApiService : RandomApiService {
     private val url = "https://backend-omega-seven.vercel.app/api/getjoke"
     private val defaultJoke: DevJoke =
         DevJoke(question = "Error:", punchline = "Unable to retrieve joke")
@@ -26,5 +28,9 @@ class DevJokeApiService {
         } catch (e: Exception) {
             listOf(defaultJoke)
         }
+    }
+
+    override suspend fun fetchRandomApi(): RandomApiResponse {
+        return RandomApiResponse.DevJokeResponse(getDevJoke() ?: listOf())
     }
 }
