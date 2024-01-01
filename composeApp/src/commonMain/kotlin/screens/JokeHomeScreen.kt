@@ -1,6 +1,5 @@
-package jokes
+package screens
 
-import LaughLoungeTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,6 +28,7 @@ import jokes.devJokes.DevJokeApiService
 import jokes.randomJokes.AppSpotRandomJokeApiService
 import jokes.randomJokes.RandomJokeApiService
 import jokes.randomizedApi.RandomApiResponse
+import utils.LaughLoungeTheme
 
 @Composable
 fun JokeScreen(
@@ -86,7 +86,7 @@ fun JokeScreen(
         LaunchedEffect(Unit) {
             joke = try {
                 when (val result = selectedService.fetchRandomApi()) {
-                    is RandomApiResponse.RandomJokeResponse -> result.joke.toString()
+                    is RandomApiResponse.RandomJokeResponse -> result.joke.joke
                     is RandomApiResponse.DevJokeResponse -> (result.devJoke.firstOrNull()?.question + " " + result.devJoke.firstOrNull()?.punchline)
                     is RandomApiResponse.AppSpotRandomJokeResponse -> result.appSpotRandomJoke.setup + " " + result.appSpotRandomJoke.punchline
                     is RandomApiResponse.DadJokeResponse -> result.dadJoke.joke
