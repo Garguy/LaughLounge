@@ -24,10 +24,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import jokes.dadJokes.DadJokeApiService
+import jokes.devJokes.DevJokeApiService
 import jokes.randomJokes.RandomJokeApiService
 
 @Composable
-fun JokeScreen(dadJokeApiService: DadJokeApiService, randomJokeApiService: RandomJokeApiService) {
+fun JokeScreen(
+    dadJokeApiService: DadJokeApiService,
+    randomJokeApiService: RandomJokeApiService,
+    devJokeApiService: DevJokeApiService
+) {
     var dadJoke by remember { mutableStateOf("Ready for a laugh? Tap the button!") }
     var isLoading by remember { mutableStateOf(false) }
 
@@ -67,8 +72,9 @@ fun JokeScreen(dadJokeApiService: DadJokeApiService, randomJokeApiService: Rando
     if (isLoading) {
         LaunchedEffect(Unit) {
             dadJoke = try {
-                val response = randomJokeApiService.getRandomJoke()
-                response.joke
+                val response = devJokeApiService.getDevJoke()
+                println("response on UI $response")
+                (response?.firstOrNull()?.question ?: "Error") + " " + (response?.firstOrNull()?.punchline ?: "Something went wrong")
             } catch (e: Exception) {
                 "${e.message}"
             }
