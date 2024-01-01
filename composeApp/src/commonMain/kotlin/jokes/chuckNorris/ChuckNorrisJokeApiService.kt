@@ -1,6 +1,6 @@
-package jokes.randomJokes
+package jokes.chuckNorris
 
-import dev.adamgardner.BuildKonfig.API_NINJA_KEY
+import dev.adamgardner.BuildKonfig
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.header
@@ -9,27 +9,26 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
 import utils.HttpClientFactory
 
-class RandomJokeApiService {
+class ChuckNorrisJokeApiService {
     private val defaultJoke = "No joke found"
-    private val url = "https://api.api-ninjas.com/v1/jokes?limit=1"
+    private val url = "https://api.api-ninjas.com/v1/chucknorris"
     private val client = HttpClientFactory.client
 
-    suspend fun getRandomJoke(): RandomJoke {
+    suspend fun getChuckNorrisJoke(): ChuckNorrisJoke {
         try {
             val response: HttpResponse = client.get(url) {
                 headers {
-                    header("X-Api-Key", API_NINJA_KEY)
+                    header("X-Api-Key", BuildKonfig.API_NINJA_KEY)
                 }
             }
 
             return if (response.status == HttpStatusCode.OK) {
-                val jokes: List<RandomJoke> = response.body<List<RandomJoke>>()
-                jokes.firstOrNull() ?: RandomJoke(defaultJoke)
+                return response.body<ChuckNorrisJoke>()
             } else {
-                RandomJoke(defaultJoke)
+                ChuckNorrisJoke(defaultJoke)
             }
         } catch (e: Exception) {
-            return RandomJoke(defaultJoke)
+            return ChuckNorrisJoke(defaultJoke)
         }
     }
 }

@@ -23,15 +23,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import jokes.chuckNorris.ChuckNorrisJokeApiService
 import jokes.dadJokes.DadJokeApiService
 import jokes.devJokes.DevJokeApiService
+import jokes.randomJokes.AppSpotRandomJokeApiService
 import jokes.randomJokes.RandomJokeApiService
 
 @Composable
 fun JokeScreen(
     dadJokeApiService: DadJokeApiService,
     randomJokeApiService: RandomJokeApiService,
-    devJokeApiService: DevJokeApiService
+    devJokeApiService: DevJokeApiService,
+    appSpotRandomJoke: AppSpotRandomJokeApiService,
+    chuckNorrisJoke: ChuckNorrisJokeApiService
 ) {
     var dadJoke by remember { mutableStateOf("Ready for a laugh? Tap the button!") }
     var isLoading by remember { mutableStateOf(false) }
@@ -62,7 +66,7 @@ fun JokeScreen(
                     if (isLoading) {
                         CircularProgressIndicator(color = MaterialTheme.colorScheme.onPrimary)
                     } else {
-                        Text("Show me a joke!", color = MaterialTheme.colorScheme.onPrimary)
+                        Text("Tell me a joke!", color = MaterialTheme.colorScheme.onPrimary)
                     }
                 }
             }
@@ -72,9 +76,9 @@ fun JokeScreen(
     if (isLoading) {
         LaunchedEffect(Unit) {
             dadJoke = try {
-                val response = devJokeApiService.getDevJoke()
-                println("response on UI $response")
-                (response?.firstOrNull()?.question ?: "Error") + " " + (response?.firstOrNull()?.punchline ?: "Something went wrong")
+                val response = chuckNorrisJoke.getChuckNorrisJoke()
+                response.joke
+//                (response?.firstOrNull()?.question ?: "Error") + " " + (response?.firstOrNull()?.punchline ?: "Something went wrong")
             } catch (e: Exception) {
                 "${e.message}"
             }
