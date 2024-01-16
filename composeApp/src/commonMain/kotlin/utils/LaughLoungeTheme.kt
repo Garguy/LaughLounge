@@ -12,7 +12,11 @@ import androidx.compose.ui.unit.dp
 
 // Custom theme with a cool blue and white color scheme
 @Composable
-fun LaughLoungeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun LaughLoungeTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = true,
+    content: @Composable () -> Unit
+) {
     val colors = if (darkTheme) darkColorPalette else lightColorPalette
 
     MaterialTheme(

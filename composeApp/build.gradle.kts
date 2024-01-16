@@ -55,7 +55,11 @@ kotlin {
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
 
+            // Bottom bar effect
             implementation("dev.chrisbanes.haze:haze:0.4.1")
+
+            // Navigation
+            implementation("cafe.adriel.voyager:voyager-core:1.0.0")
 
             // Network
             implementation(libs.ktor.client.core)
