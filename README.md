@@ -1,14 +1,37 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
+<h1 align="center">Laugh Lounge</h1>
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+## Description
 
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+Laugh Lounge is a Compose Multiplatform application designed to entertain users with a variety of jokes.
 
+## Prerequisites
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+- Kotlin and Swift installed on your machine
+- An API key from [API Ninjas](https://api-ninjas.com/)
+
+## Built With
+
+- [Kotlin](https://kotlinlang.org/)
+- [Swift](https://developer.apple.com/swift/)
+- [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
+- [Haze](https://github.com/chrisbanes/haze) - For bottom bar effect
+- [Voyager](https://github.com/adrielcafe/voyager) - For navigation, Voyager
+- [Ktor](https://ktor.io/) - For network functionalities
+
+## Support
+
+If you encounter any issues or have questions about the app, please contact [Adam](https://www.adamgardner.dev/contact).
+
+## License
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+[LICENSE](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
