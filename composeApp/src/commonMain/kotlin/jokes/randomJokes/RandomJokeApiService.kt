@@ -1,6 +1,5 @@
 package jokes.randomJokes
 
-import dev.adamgardner.BuildKonfig.API_NINJA_KEY
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.header
@@ -9,6 +8,7 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.http.HttpStatusCode
 import jokes.randomizedApi.RandomApiResponse
 import jokes.randomizedApi.RandomApiService
+import utils.ApiConfig
 import utils.HttpClientFactory
 
 class RandomJokeApiService : RandomApiService {
@@ -20,7 +20,7 @@ class RandomJokeApiService : RandomApiService {
         try {
             val response: HttpResponse = client.get(url) {
                 headers {
-                    header("X-Api-Key", API_NINJA_KEY)
+                    header("X-Api-Key", ApiConfig.ninjaApiKey)
                 }
             }
 

@@ -14,6 +14,7 @@ import jokes.devJokes.DevJokeApiService
 import jokes.randomJokes.AppSpotRandomJokeApiService
 import jokes.randomJokes.RandomJokeApiService
 import screens.JokeScreen
+import utils.ApiConfig
 import utils.LaughLoungeTheme
 
 @Composable
@@ -50,7 +51,7 @@ suspend fun fetchRemoteConfig() {
     try {
         // Fetch and activate the values from the Remote Config service.
         remoteConfig.fetchAndActivate()
-        val apiKey = remoteConfig.getValue("ninja_api_key")
+        ApiConfig.setApiKey(remoteConfig.getValue("ninja_api_key").asString())
     } catch (e: Exception) {
         // TODO add crashlytics and log that we are not getting the API key.
         println("Error, need to update this error")

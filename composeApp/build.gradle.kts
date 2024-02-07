@@ -1,5 +1,4 @@
 
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.compose.ExperimentalComposeLibrary
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
@@ -9,7 +8,6 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     kotlin("plugin.serialization") version "1.9.0"
     id ("com.google.gms.google-services")
-    id("com.codingfeline.buildkonfig") version "+"
 }
 
 kotlin {
@@ -73,15 +71,6 @@ kotlin {
     }
 }
 
-buildkonfig {
-    packageName = "dev.adamgardner"
-    val key: String = gradleLocalProperties(rootDir).getProperty("API_NINJA_KEY")
-
-    defaultConfigs {
-        buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING,
-            "API_NINJA_KEY", key)
-    }
-}
 
 android {
     namespace = "dev.adamgardner"
