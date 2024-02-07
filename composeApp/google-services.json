@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "929936275716",
+    "project_id": "laugh-lounge-353aa",
+    "storage_bucket": "laugh-lounge-353aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929936275716:android:a3c7bbe2cfa57d6e98b851",
+        "android_client_info": {
+          "package_name": "dev.adamgardner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6oljylBnZ6_pwyCryj20m74UHRVmIQOc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

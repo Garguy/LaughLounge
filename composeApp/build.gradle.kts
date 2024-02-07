@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     kotlin("plugin.serialization") version "1.9.0"
+    id ("com.google.gms.google-services")
     id("com.codingfeline.buildkonfig") version "+"
 }
 
@@ -67,6 +68,7 @@ kotlin {
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.client.serialization.json)
             implementation("io.ktor:ktor-client-cio:2.3.7")
+            implementation("dev.gitlive:firebase-config:1.11.1")
         }
     }
 }
