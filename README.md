@@ -7,7 +7,6 @@ Laugh Lounge is a Compose Multiplatform application designed to entertain users 
 ## Prerequisites
 
 - Kotlin and Swift installed on your machine
-- An API key from [API Ninjas](https://api-ninjas.com/)
 
 ## Built With
 
