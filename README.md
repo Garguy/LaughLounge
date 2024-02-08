@@ -14,7 +14,7 @@ Laugh Lounge is a Compose Multiplatform application designed to entertain users 
 - [Swift](https://developer.apple.com/swift/)
 - [Compose Multiplatform](https://www.jetbrains.com/lp/compose-multiplatform/)
 - [Haze](https://github.com/chrisbanes/haze) - For bottom bar effect
-- [Voyager](https://github.com/adrielcafe/voyager) - For navigation, Voyager
+- [Voyager](https://github.com/adrielcafe/voyager) - For navigation
 - [Ktor](https://ktor.io/) - For network functionalities
 - [Firebase Kotlin SDK](https://github.com/GitLiveApp/firebase-kotlin-sdk) - To simplify Firebase
 
